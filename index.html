@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* First Time Popup Styles */
+        /* First Time Installation Popup - White Background */
         .first-time-popup-overlay {
             position: fixed;
             top: 0;
@@ -16,22 +16,32 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.85);
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             z-index: 10001;
             backdrop-filter: blur(5px);
         }
         
+        .first-time-popup-overlay.show {
+            display: flex;
+        }
+        
         .first-time-popup {
             background: #ffffff;
             border-radius: 20px;
-            padding: 40px;
+            padding: 40px 30px;
             max-width: 500px;
             width: 90%;
             text-align: center;
             position: relative;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: popupFadeIn 0.4s ease;
+        }
+        
+        @keyframes popupFadeIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         
         .popup-step {
@@ -40,18 +50,12 @@
         
         .popup-step.active {
             display: block;
-            animation: fadeInStep 0.4s ease;
+            animation: stepFadeIn 0.3s ease;
         }
         
-        @keyframes fadeInStep {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes stepFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .popup-image {
@@ -61,13 +65,14 @@
             border-radius: 12px;
             margin: 20px 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
         }
         
         .popup-title {
             font-size: 24px;
             font-weight: 700;
             color: #1e293b;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .popup-description {
@@ -157,18 +162,9 @@
             .first-time-popup {
                 padding: 30px 20px;
             }
-            
-            .popup-title {
-                font-size: 20px;
-            }
-            
-            .popup-description {
-                font-size: 14px;
-            }
-            
-            .popup-image {
-                max-width: 280px;
-            }
+            .popup-title { font-size: 20px; }
+            .popup-description { font-size: 14px; }
+            .popup-image { max-width: 280px; }
         }
     </style>
 </head>
@@ -336,7 +332,7 @@
     <div class="notification" id="notification-toast"><i class="fa fa-info-circle"></i><span>Notification</span></div>
     <canvas id="confetti-canvas" class="confetti"></canvas>
 
-    <!-- First Time Installation Guide Popup -->
+    <!-- First Time Installation Guide Popup (White Background) -->
     <div class="first-time-popup-overlay" id="firstTimePopup">
         <div class="first-time-popup">
             <!-- Step 1 -->
@@ -349,9 +345,9 @@
                 </div>
                 <h2 class="popup-title">Install Learny App</h2>
                 <p class="popup-description">In your browser click menu</p>
-                <img src="https://i.postimg.cc/hjF5d7tw/2026-4-17-10h9m1s.jpg" alt="Step 1" class="popup-image">
+                <img src="https://i.postimg.cc/hjF5d7tw/2026-4-17-10h9m1s.jpg" alt="Step 1: Click menu" class="popup-image">
                 <div class="popup-controls">
-                    <button class="popup-btn popup-btn-next" onclick="nextStep()">Next <i class="fa fa-arrow-right"></i></button>
+                    <button class="popup-btn popup-btn-next" id="popupNext1">Next <i class="fa fa-arrow-right"></i></button>
                 </div>
             </div>
 
@@ -365,10 +361,10 @@
                 </div>
                 <h2 class="popup-title">Add to Home Screen</h2>
                 <p class="popup-description">Click add to home screen</p>
-                <img src="https://i.postimg.cc/brMh4wTY/2026-4-17-10h10m27s.jpg" alt="Step 2" class="popup-image">
+                <img src="https://i.postimg.cc/brMh4wTY/2026-4-17-10h10m27s.jpg" alt="Step 2: Add to home screen" class="popup-image">
                 <div class="popup-controls">
-                    <button class="popup-btn popup-btn-prev" onclick="prevStep()"><i class="fa fa-arrow-left"></i> Previous</button>
-                    <button class="popup-btn popup-btn-next" onclick="nextStep()">Next <i class="fa fa-arrow-right"></i></button>
+                    <button class="popup-btn popup-btn-prev" id="popupPrev2"><i class="fa fa-arrow-left"></i> Previous</button>
+                    <button class="popup-btn popup-btn-next" id="popupNext2">Next <i class="fa fa-arrow-right"></i></button>
                 </div>
             </div>
 
@@ -382,14 +378,14 @@
                 </div>
                 <h2 class="popup-title">Install Button</h2>
                 <p class="popup-description">Click install button</p>
-                <img src="https://i.postimg.cc/nVGPXrft/2026-4-17-10h11m38s.jpg" alt="Step 3" class="popup-image">
+                <img src="https://i.postimg.cc/nVGPXrft/2026-4-17-10h11m38s.jpg" alt="Step 3: Click install" class="popup-image">
                 <div class="popup-controls">
-                    <button class="popup-btn popup-btn-prev" onclick="prevStep()"><i class="fa fa-arrow-left"></i> Previous</button>
-                    <button class="popup-btn popup-btn-next" onclick="nextStep()">Next <i class="fa fa-arrow-right"></i></button>
+                    <button class="popup-btn popup-btn-prev" id="popupPrev3"><i class="fa fa-arrow-left"></i> Previous</button>
+                    <button class="popup-btn popup-btn-next" id="popupNext3">Next <i class="fa fa-arrow-right"></i></button>
                 </div>
             </div>
 
-            <!-- Step 4 -->
+            <!-- Step 4 (Final) -->
             <div class="popup-step" data-step="4">
                 <div class="popup-step-indicator">
                     <div class="step-dot"></div>
@@ -399,10 +395,10 @@
                 </div>
                 <h2 class="popup-title">Complete Installation</h2>
                 <p class="popup-description">Then install</p>
-                <img src="https://i.postimg.cc/sXRTXdnv/2026-4-17-10h13m22s.jpg" alt="Step 4" class="popup-image">
+                <img src="https://i.postimg.cc/sXRTXdnv/2026-4-17-10h13m22s.jpg" alt="Step 4: Install complete" class="popup-image">
                 <div class="popup-controls">
-                    <button class="popup-btn popup-btn-prev" onclick="prevStep()"><i class="fa fa-arrow-left"></i> Previous</button>
-                    <button class="popup-btn popup-btn-gotit" onclick="completeInstallation()">Got it! <i class="fa fa-check"></i></button>
+                    <button class="popup-btn popup-btn-prev" id="popupPrev4"><i class="fa fa-arrow-left"></i> Previous</button>
+                    <button class="popup-btn popup-btn-gotit" id="popupGotIt">Got it! <i class="fa fa-check"></i></button>
                 </div>
             </div>
         </div>
@@ -411,55 +407,131 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
     <script src="script.js"></script>
+    
+    <!-- First Time Popup Logic (Inline - doesn't modify external script.js) -->
     <script>
-        // First Time Popup Logic
+    (function() {
+        'use strict';
+        
+        // Unique localStorage key for first-time popup
+        const POPUP_KEY = 'learny_install_guide_seen_v1';
+        
+        // DOM elements
+        const popupOverlay = document.getElementById('firstTimePopup');
+        const steps = document.querySelectorAll('.popup-step');
+        const stepDots = document.querySelectorAll('.step-dot');
+        
+        // Current step tracker
         let currentStep = 1;
         const totalSteps = 4;
-
-        function showFirstTimePopup() {
-            const hasSeenPopup = localStorage.getItem('learny_firstTimePopup');
-            if (!hasSeenPopup) {
-                document.getElementById('firstTimePopup').style.display = 'flex';
+        
+        // Show popup only on FIRST EVER visit
+        function checkAndShowPopup() {
+            try {
+                const hasSeen = localStorage.getItem(POPUP_KEY);
+                if (!hasSeen) {
+                    // First time - show popup
+                    setTimeout(function() {
+                        popupOverlay.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                    }, 500); // Small delay to ensure page loads first
+                }
+            } catch (e) {
+                console.warn('localStorage not available, showing popup');
+                popupOverlay.classList.add('show');
                 document.body.style.overflow = 'hidden';
             }
         }
-
+        
+        // Go to specific step
+        function goToStep(stepNum) {
+            if (stepNum < 1 || stepNum > totalSteps) return;
+            
+            // Hide all steps
+            steps.forEach(function(step) {
+                step.classList.remove('active');
+            });
+            stepDots.forEach(function(dot) {
+                dot.classList.remove('active');
+            });
+            
+            // Show current step
+            document.querySelector('.popup-step[data-step="' + stepNum + '"]').classList.add('active');
+            stepDots[stepNum - 1].classList.add('active');
+            currentStep = stepNum;
+        }
+        
+        // Next step
         function nextStep() {
             if (currentStep < totalSteps) {
-                document.querySelector(`.popup-step[data-step="${currentStep}"]`).classList.remove('active');
-                currentStep++;
-                document.querySelector(`.popup-step[data-step="${currentStep}"]`).classList.add('active');
-                updateStepDots();
+                goToStep(currentStep + 1);
             }
         }
-
+        
+        // Previous step
         function prevStep() {
             if (currentStep > 1) {
-                document.querySelector(`.popup-step[data-step="${currentStep}"]`).classList.remove('active');
-                currentStep--;
-                document.querySelector(`.popup-step[data-step="${currentStep}"]`).classList.add('active');
-                updateStepDots();
+                goToStep(currentStep - 1);
             }
         }
-
-        function updateStepDots() {
-            document.querySelectorAll('.step-dot').forEach((dot, index) => {
-                if (index + 1 === currentStep) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
+        
+        // Complete installation guide
+        function completeGuide() {
+            try {
+                // Mark as seen in localStorage (persistent across sessions)
+                localStorage.setItem(POPUP_KEY, 'true');
+            } catch (e) {
+                console.warn('Could not save to localStorage');
+            }
+            
+            // Hide popup
+            popupOverlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        // Bind button events
+        function bindEvents() {
+            // Next buttons
+            document.getElementById('popupNext1').addEventListener('click', nextStep);
+            document.getElementById('popupNext2').addEventListener('click', nextStep);
+            document.getElementById('popupNext3').addEventListener('click', nextStep);
+            
+            // Previous buttons
+            document.getElementById('popupPrev2').addEventListener('click', prevStep);
+            document.getElementById('popupPrev3').addEventListener('click', prevStep);
+            document.getElementById('popupPrev4').addEventListener('click', prevStep);
+            
+            // Got it button (final step - only way to close)
+            document.getElementById('popupGotIt').addEventListener('click', completeGuide);
+            
+            // Prevent closing by clicking overlay
+            popupOverlay.addEventListener('click', function(e) {
+                if (e.target === popupOverlay) {
+                    e.stopPropagation();
+                }
+            });
+            
+            // Prevent keyboard navigation to skip
+            document.addEventListener('keydown', function(e) {
+                if (popupOverlay.classList.contains('show')) {
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                    }
                 }
             });
         }
-
-        function completeInstallation() {
-            localStorage.setItem('learny_firstTimePopup', 'seen');
-            document.getElementById('firstTimePopup').style.display = 'none';
-            document.body.style.overflow = '';
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                bindEvents();
+                checkAndShowPopup();
+            });
+        } else {
+            bindEvents();
+            checkAndShowPopup();
         }
-
-        // Show popup when page loads
-        window.addEventListener('load', showFirstTimePopup);
+    })();
     </script>
 </body>
 </html>
