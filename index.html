@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6c2bd9">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./icon-512.png">
+<title>Learny - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">L</div>
+                <div class="sidebar-title">Learny</div>
+            </div>
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item active"><a href="index.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                    <li class="nav-item"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+<li class="nav-item"><a href="bot.html"><i class="fa fa-brain"></i> LearnyAI</a></li>
+                    <li class="nav-item"><a href="tasks.html"><i class="fa fa-tasks"></i> Tasks</a></li>
+                    <li class="nav-item"><a href="time.html"><i class="fa fa-clock"></i> Time Tracker</a></li>
+                    <li class="nav-item"><a href="achievements.html"><i class="fa fa-trophy"></i> Achievements</a></li>
+                    <li class="nav-item"><a href="motivation.html"><i class="fa fa-lightbulb"></i> Motivation</a></li>
+                    <li class="nav-item"><a href="music.html"><i class="fa fa-music"></i> Music</a></li>
+                    <li class="nav-item"><a href="pomodoro.html"><i class="fa fa-stopwatch"></i> Pomodoro</a></li>
+                    <li class="nav-item"><a href="mark.html"><i class="fa fa-chart-line"></i> Mark Analyze</a></li>
+                    <li class="nav-item"><a href="pastpapers.html"><i class="fa fa-file-alt"></i> Past Papers</a></li>
+                    <li class="nav-item"><a href="countdown.html"><i class="fa fa-hourglass-half"></i> Countdown</a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fa fa-cog"></i> Settings</a></li>
+                    <li class="nav-item"><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+                    <li class="nav-item"><a href="rate.html"><i class="fa fa-star"></i> Rate Us</a></li>
+                    <li class="nav-item premium-nav-item" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);">
+                        <a href="premium.html" class="premium-link" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(108, 43, 217, 0.2)); color: var(--warning); border-radius: 8px;">
+                            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width: 18px; height: 18px; margin-right: 8px;">
+                            Get Premium
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-welcome">
+                <div class="divider"></div>
+                <p id="sidebar-username">Welcome, User!</p>
+            </div>
+        </aside>
+
+        <div class="overlay"></div>
+
+        <main class="main-content">
+            <div class="page-header">
+                <button class="hamburger"><i class="fa fa-bars"></i></button>
+                <h1 class="page-title"><i class="fa fa-home"></i> Dashboard</h1>
+                <div class="header-actions">
+                    <button class="theme-toggle"><i class="fa fa-moon"></i></button>
+                </div>
+            </div>
+
+            <div class="greeting-banner card mb-3">
+                <div class="greeting-content">
+                    <img id="dashboard-avatar" src="https://i.postimg.cc/QdPYLqrV/AIRetouch-20260412-135002012.png" alt="Avatar" class="greeting-avatar">
+                    <div class="greeting-text-container">
+                        <div class="greeting-full" id="greeting-full">Good morning, User</div>
+                        <div class="greeting-sub" id="greeting-sub">Let's start learning 🎯</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon purple"><i class="fa fa-tasks"></i></div>
+                    <div class="stat-info">
+                        <h3 id="today-tasks-count">0</h3>
+                        <p>Today Tasks</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange"><i class="fa fa-fire"></i></div>
+                    <div class="stat-info">
+                        <h3 id="day-streak">0</h3>
+                        <p>Day Streak</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="fa fa-clock"></i></div>
+                    <div class="stat-info">
+                        <h3 id="today-study-time">0h</h3>
+                        <p>Today Study Time</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="fa fa-chart-line"></i></div>
+                    <div class="stat-info">
+                        <h3 id="total-study-hours">0h</h3>
+                        <p>Total Hours</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><i class="fa fa-chart-bar"></i> Study Hours (10 Days)</h2>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="studyChart" class="chart-canvas"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><i class="fa fa-list-check"></i> Today Tasks</h2>
+                        <a href="tasks.html" class="btn btn-sm btn-secondary">Manage</a>
+                    </div>
+                    <div id="today-tasks-list" class="task-list">
+                        Loading...
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><i class="fa fa-hourglass-half"></i> Exam Countdowns</h2>
+                        <a href="countdown.html" class="btn btn-sm btn-secondary">Manage</a>
+                    </div>
+                    <div id="dashboard-countdowns-list" class="countdown-list-container">
+                        No countdowns set. <a href="countdown.html">Add one</a>
+                    </div>
+                </div>
+
+                <!-- PREMIUM LOCKED QUICK STATS -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><i class="fa fa-bolt"></i> Quick Stats</h2>
+                        <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width: 18px; height: 18px;">
+                    </div>
+                    <div class="quick-stats-list">
+                        <div class="stat-row">
+                            <span>Total Days</span>
+                            <div id="total-days" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;"></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>Avg Hours/Day</span>
+                            <div id="avg-hours" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;"></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>Tasks Done</span>
+                            <div id="total-done" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;"></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>Achievements</span>
+                            <div id="achievement-count" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;"></div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 16px; padding: 12px; background: var(--bg-dark); border-radius: 8px;">
+                        <a href="premium.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--warning), #fbbf24); color: #000;">
+                            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;">
+                            Unlock Stats
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fa fa-lightbulb"></i> Quick Tips</h2>
+                </div>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 14px;"><i class="fa fa-check" style="color: var(--success); margin-right: 8px;"></i>Log daily study hours in Time Tracker</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 14px;"><i class="fa fa-check" style="color: var(--success); margin-right: 8px;"></i>Set Pomodoro sessions for focused work</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 14px;"><i class="fa fa-check" style="color: var(--success); margin-right: 8px;"></i>Track exams with Countdown feature</li>
+                    <li style="padding: 8px 0; color: var(--text-muted); font-size: 14px;"><i class="fa fa-check" style="color: var(--success); margin-right: 8px;"></i>Use Assistant for study schedules & tips</li>
+                </ul>
+            </div>
+
+            <footer class="site-footer">
+                Powered by <a href="contact.html">DC</a> | Made in Sri Lanka 🇱🇰
+            </footer>
+        </main>
+    </div>
+
+    <div id="notification-toast" class="notification">
+        <i class="fa fa-check-circle"></i>
+        <span>Notification</span>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // ✅ SAFE LOCK OVERVIEW: Runs after APP.initDashboard() to visually lock stats
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var ids = ['total-days', 'avg-hours', 'total-done', 'achievement-count'];
+                ids.forEach(function(id) {
+                    var el = document.getElementById(id);
+                    if (el) {
+                        el.innerHTML = '- <img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px;height:14px;vertical-align:middle;">';
+                    }
+                });
+            }, 600);
+        });
+    </script>
+</body>
+</html>

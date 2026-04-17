@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learny - Rate Us</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6c2bd9">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="overlay"></div>
+    <aside class="sidebar">
+      <div class="sidebar-header"><div class="sidebar-logo"><i class="fa fa-graduation-cap"></i></div><span class="sidebar-title">Learny</span></div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html"><i class="fa fa-grip"></i> Dashboard</a></li>
+          <li class="nav-item"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                    <li class="nav-item"><a href="bot.html"><i class="fa fa-brain"></i> LearnyAI</a></li>
+        <li class="nav-item"><a href="tasks.html"><i class="fa fa-check-circle"></i> Tasks</a></li>
+        <li class="nav-item"><a href="time.html"><i class="fa fa-clock"></i> Time Tracker</a></li>
+        <li class="nav-item"><a href="achievements.html"><i class="fa fa-trophy"></i> Achievements</a></li>
+        <li class="nav-item"><a href="motivation.html"><i class="fa fa-quote-left"></i> Motivation</a></li>
+        <li class="nav-item"><a href="music.html"><i class="fa fa-music"></i> Music</a></li>
+        <li class="nav-item"><a href="pomodoro.html"><i class="fa fa-hourglass-half"></i> Pomodoro</a></li>
+        <li class="nav-item"><a href="mark.html"><i class="fa fa-chart-line"></i> Mark Analyze</a></li>
+        <li class="nav-item"><a href="pastpapers.html"><i class="fa fa-file-alt"></i> Past Papers</a></li>
+        <li class="nav-item"><a href="countdown.html"><i class="fa fa-calendar-day"></i> Countdown</a></li>
+        <li class="nav-item"><a href="settings.html"><i class="fa fa-cog"></i> Settings</a></li>
+        <li class="nav-item"><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+        <li class="nav-item active"><a href="rate.html"><i class="fa fa-star"></i> Rate Us</a></li>
+      </ul>
+      <div class="sidebar-welcome"><p class="welcome-text">Welcome!</p><div class="divider"></div><p>Stay focused & keep learning</p></div>
+    </aside>
+    <main class="main-content">
+      <header class="page-header">
+        <button class="hamburger"><i class="fa fa-bars"></i></button>
+        <h1 class="page-title"><i class="fa fa-star"></i> Rate Learny</h1>
+        <div class="header-actions"><button class="theme-toggle" id="toggle-mode"><i class="fa fa-sun"></i></button></div>
+      </header>
+      <div class="card mb-3 text-center">
+        <div class="card-header"><span class="card-title"><i class="fa fa-star"></i> Your Rating</span></div>
+        <div class="stars-container">
+          <button class="star-btn"><i class="fa fa-star"></i></button>
+          <button class="star-btn"><i class="fa fa-star"></i></button>
+          <button class="star-btn"><i class="fa fa-star"></i></button>
+          <button class="star-btn"><i class="fa fa-star"></i></button>
+          <button class="star-btn"><i class="fa fa-star"></i></button>
+        </div>
+        <form id="feedback-form" class="form-group">
+          <textarea id="feedback-text" class="form-control" rows="3" placeholder="Share your feedback or suggestions..."></textarea>
+          <button class="btn btn-primary mt-2"><i class="fa fa-paper-plane"></i> Submit Feedback</button>
+        </form>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title"><i class="fa fa-question-circle"></i> FAQ</span></div>
+        <div class="faq-item"><div class="faq-question">How do I log study time? <i class="fa fa-chevron-down fa-toggle"></i></div><div class="faq-answer">Go to Time Tracker, enter hours for today, and click Save. Your data appears in charts and calendar.</div></div>
+        <div class="faq-item"><div class="faq-question">Can I use Learny offline? <i class="fa fa-chevron-down fa-toggle"></i></div><div class="faq-answer">Yes! Learny is a PWA. After first load, you can use it without internet.</div></div>
+        <div class="faq-item"><div class="faq-question">Is my data safe? <i class="fa fa-chevron-down fa-toggle"></i></div><div class="faq-answer">All data is stored locally on your device using localStorage. No servers involved.</div></div>
+        <div class="faq-item"><div class="faq-question">How does Pomodoro work? <i class="fa fa-chevron-down fa-toggle"></i></div><div class="faq-answer">Set a duration (default 25 min), start the timer, and focus. When it ends, take a break.</div></div>
+        <div class="faq-item"><div class="faq-question">How to earn badges? <i class="fa fa-chevron-down fa-toggle"></i></div><div class="faq-answer">Log study hours weekly. Reach 60% for Bronze, 100% for Silver, 130% for Golden.</div></div>
+        <div class="faq-item"><div class="faq-question">Can I change the theme? <i class="fa fa-chevron-down fa-toggle"></i></div><div class="faq-answer">Yes! Go to Settings and choose Purple, Red, Green, Blue, or Yellow.</div></div>
+        <div class="faq-item"><div class="faq-question">How to add music? <i class="fa fa-chevron-down fa-toggle"></i></div><div class="faq-answer">In Music page, click Upload and select MP3 files from your device.</div></div>
+        <div class="faq-item"><div class="faq-question">Who made this? <i class="fa fa-chevron-down fa-toggle"></i></div><div class="faq-answer">Learny is built by DC, a passionate developer from Sri Lanka. Visit Contact page for more.</div></div>
+      </div>
+      <footer class="site-footer">Powered by <a href="contact.html">DC</a> | Made in Sri Lanka <i class="fa fa-heart" style="color:var(--danger)"></i></footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
