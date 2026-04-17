@@ -48,7 +48,6 @@
         <!-- Main Content -->
         <main class="main-content">
             <header class="page-header">
-                 <button class="hamburger"><i class="fa fa-bars"></i></button>
                 <h1 class="page-title"><i class="fa fa-home"></i> Dashboard</h1>
                 <div class="header-actions">
                     <button class="hamburger"><i class="fa fa-bars"></i></button>
@@ -136,33 +135,30 @@
             </div>
 
             <!-- Quick Stats -->
-            <!-- PREMIUM LOCKED QUICK STATS -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title"><i class="fa fa-bolt"></i> Quick Stats</h2>
-                        <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width: 18px; height: 18px;">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fa fa-bolt"></i> Quick Stats</h2>
+                </div>
+                <div class="quick-stats-list">
+                    <div class="stat-row">
+                        <span><img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">Total Days</span>
+                        <strong id="total-days">0</strong>
                     </div>
-                    <div class="quick-stats-list">
-                        <div class="stat-row">
-                            <span>Total Days</span>
-                            <div id="total-days" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;">-</div>
-                        </div>
-                        <div class="stat-row">
-                            <span>Avg Hours/Day</span>
-                            <div id="avg-hours" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;">-</div>
-                        </div>
-                        <div class="stat-row">
-                            <span>Tasks Done</span>
-                            <div id="total-done" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;">-</div>
-                        </div>
-                        <div class="stat-row">
-                            <span>Achievements</span>
-                            <div id="achievement-count" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;">-</div>
-                        </div>
+                    <div class="stat-row">
+                        <span><img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">Avg Hours/Day</span>
+                        <strong id="avg-hours">0</strong>
                     </div>
-                    <div style="text-align: center; margin-top: 16px; padding: 12px; background: var(--bg-dark); border-radius: 8px;">
-                        <a href="premium.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--warning), #fbbf24); color: #000;">
-                            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;">
+                    <div class="stat-row">
+                        <span><img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">Tasks Done</span>
+                        <strong id="total-done">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span><img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">Achievements</span>
+                        <strong id="achievement-count">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <a href="#" class="premium-link" style="color:var(--warning);font-weight:700;">
+                            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">
                             Unlock Stats
                         </a>
                     </div>
@@ -261,7 +257,59 @@
       </div>
     </div>
 
+    <!-- ========================================
+         DESKTOP FRIEND POPUP (Professional)
+         ======================================== -->
+    <div id="desktop-friend-overlay" class="desktop-friend-overlay">
+      <div class="desktop-friend-popup">
+        <button class="desktop-friend-close" id="desktop-friend-close" aria-label="Close">
+          <i class="fa fa-times"></i>
+        </button>
+        
+        <div class="desktop-friend-content">
+          <div class="desktop-friend-icon">
+            <i class="fa fa-robot"></i>
+          </div>
+          
+          <h3 class="desktop-friend-title">👋 Hey there, Study Buddy!</h3>
+          
+          <p class="desktop-friend-message">
+            Welcome to <strong>Learny</strong> — your personal study companion! 🎓<br><br>
+            I'm here to help you stay focused, track progress, and achieve your academic goals.
+          </p>
+          
+          <div class="desktop-friend-features">
+            <div class="feature-item">
+              <i class="fa fa-check-circle"></i>
+              <span>Smart task management</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa fa-check-circle"></i>
+              <span>Pomodoro focus timer</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa fa-check-circle"></i>
+              <span>Progress analytics</span>
+            </div>
+            <div class="feature-item">
+              <i class="fa fa-check-circle"></i>
+              <span>Motivation & quotes</span>
+            </div>
+          </div>
+          
+          <p class="desktop-friend-tip">
+            💡 <strong>Pro Tip:</strong> Install Learny as a PWA for offline access and faster loading!
+          </p>
+          
+          <button class="desktop-friend-btn" id="desktop-friend-gotit">
+            <i class="fa fa-sparkles"></i> Let's Get Started!
+          </button>
+        </div>
+      </div>
+    </div>
+
     <style>
+      /* Installation Guide Styles */
       .install-guide-overlay {
         position: fixed;
         top: 0;
@@ -295,14 +343,8 @@
       }
       
       @keyframes popupSlideIn {
-        from {
-          opacity: 0;
-          transform: translateY(-30px) scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
+        from { opacity: 0; transform: translateY(-30px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
       }
       
       .install-guide-header {
@@ -316,19 +358,10 @@
         margin-bottom: 8px;
       }
       
-      .install-guide-header h2 i {
-        margin-right: 10px;
-      }
+      .install-guide-header h2 i { margin-right: 10px; }
+      .install-guide-header p { color: var(--text-muted, #94a3b8); font-size: 14px; }
       
-      .install-guide-header p {
-        color: var(--text-muted, #94a3b8);
-        font-size: 14px;
-      }
-      
-      .install-guide-steps {
-        position: relative;
-        min-height: 420px;
-      }
+      .install-guide-steps { position: relative; min-height: 420px; }
       
       .install-step {
         display: none;
@@ -336,19 +369,11 @@
         animation: fadeInStep 0.4s ease;
       }
       
-      .install-step.active {
-        display: block;
-      }
+      .install-step.active { display: block; }
       
       @keyframes fadeInStep {
-        from {
-          opacity: 0;
-          transform: translateX(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
+        from { opacity: 0; transform: translateX(20px); }
+        to { opacity: 1; transform: translateX(0); }
       }
       
       .step-number {
@@ -426,10 +451,7 @@
         gap: 8px;
       }
       
-      .install-btn:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-      }
+      .install-btn:disabled { opacity: 0.4; cursor: not-allowed; }
       
       .install-btn-prev {
         background: var(--bg-dark, #0f0f1a);
@@ -437,9 +459,7 @@
         border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
       }
       
-      .install-btn-prev:not(:disabled):hover {
-        background: var(--bg-card-hover, #22223a);
-      }
+      .install-btn-prev:not(:disabled):hover { background: var(--bg-card-hover, #22223a); }
       
       .install-btn-next {
         background: linear-gradient(135deg, var(--primary, #6c2bd9), var(--primary-light, #8b5cf6));
@@ -461,40 +481,219 @@
         box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
       }
       
-      .hidden {
-        display: none !important;
+      .hidden { display: none !important; }
+      
+      /* Desktop Friend Popup Styles */
+      .desktop-friend-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(4px);
+      }
+      
+      .desktop-friend-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .desktop-friend-popup {
+        background: var(--bg-card, #1a1a2e);
+        border-radius: 24px;
+        padding: 0;
+        max-width: 480px;
+        width: 92%;
+        border: 2px solid var(--primary, #6c2bd9);
+        box-shadow: 0 20px 60px rgba(108, 43, 217, 0.5);
+        animation: friendPopupIn 0.5s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      @keyframes friendPopupIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      
+      .desktop-friend-popup::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--success));
+      }
+      
+      .desktop-friend-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--bg-dark, #0f0f1a);
+        border: 1px solid var(--border, rgba(255,255,255,0.08));
+        color: var(--text-muted, #94a3b8);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        z-index: 2;
+      }
+      
+      .desktop-friend-close:hover {
+        background: var(--danger, #ef4444);
+        color: #fff;
+        border-color: var(--danger);
+        transform: rotate(90deg);
+      }
+      
+      .desktop-friend-content {
+        padding: 32px 28px 28px;
+        text-align: center;
+      }
+      
+      .desktop-friend-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        color: #fff;
+        animation: floatIcon 3s ease-in-out infinite;
+        box-shadow: 0 8px 24px rgba(108, 43, 217, 0.4);
+      }
+      
+      @keyframes floatIcon {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      
+      .desktop-friend-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-main, #e2e8f0);
+        margin-bottom: 16px;
+        line-height: 1.4;
+      }
+      
+      .desktop-friend-message {
+        color: var(--text-muted, #94a3b8);
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 24px;
+      }
+      
+      .desktop-friend-message strong {
+        color: var(--primary-light, #8b5cf6);
+      }
+      
+      .desktop-friend-features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 16px;
+        margin-bottom: 24px;
+        text-align: left;
+      }
+      
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--text-muted, #94a3b8);
+      }
+      
+      .feature-item i {
+        color: var(--success, #10b981);
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      
+      .desktop-friend-tip {
+        background: rgba(108, 43, 217, 0.12);
+        border: 1px solid var(--primary, #6c2bd9);
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin-bottom: 24px;
+        font-size: 13px;
+        color: var(--text-muted, #94a3b8);
+        text-align: left;
+      }
+      
+      .desktop-friend-tip strong {
+        color: var(--primary-light, #8b5cf6);
+      }
+      
+      .desktop-friend-btn {
+        width: 100%;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, var(--primary, #6c2bd9), var(--primary-light, #8b5cf6));
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      
+      .desktop-friend-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(108, 43, 217, 0.5);
+      }
+      
+      .desktop-friend-btn:active {
+        transform: translateY(0);
+      }
+      
+      /* Responsive */
+      @media (max-width: 768px) {
+        .desktop-friend-overlay { display: none !important; }
+        
+        .install-guide-popup { padding: 20px; }
+        .install-guide-steps { min-height: 380px; }
+        .install-step img { max-width: 100%; }
+        .step-title { font-size: 16px; }
+        .install-guide-controls { flex-direction: column; }
+        .install-btn { width: 100%; justify-content: center; }
       }
       
       @media (max-width: 480px) {
-        .install-guide-popup {
-          padding: 20px;
-        }
-        
-        .install-guide-steps {
-          min-height: 380px;
-        }
-        
-        .install-step img {
-          max-width: 100%;
-        }
-        
-        .step-title {
-          font-size: 16px;
-        }
-        
-        .install-guide-controls {
-          flex-direction: column;
-        }
-        
-        .install-btn {
-          width: 100%;
-          justify-content: center;
-        }
+        .desktop-friend-features { grid-template-columns: 1fr; }
       }
     </style>
 
     <script>
-      // First Time Installation Guide - Self-contained in index.html
+      // ========================================
+      // INSTALLATION GUIDE POPUP LOGIC
+      // ========================================
       (function() {
         const HAS_SEEN_GUIDE_KEY = 'learny_install_guide_seen';
         let currentStep = 1;
@@ -529,16 +728,12 @@
           
           document.querySelectorAll('.install-step').forEach(s => {
             s.classList.remove('active');
-            if (parseInt(s.dataset.step) === step) {
-              s.classList.add('active');
-            }
+            if (parseInt(s.dataset.step) === step) s.classList.add('active');
           });
           
           document.querySelectorAll('.dot').forEach(d => {
             d.classList.remove('active');
-            if (parseInt(d.dataset.dot) === step) {
-              d.classList.add('active');
-            }
+            if (parseInt(d.dataset.dot) === step) d.classList.add('active');
           });
           
           const prevBtn = document.getElementById('install-prev');
@@ -548,32 +743,22 @@
           if (prevBtn) prevBtn.disabled = step === 1;
           
           if (nextBtn) {
-            if (step === totalSteps) {
-              nextBtn.classList.add('hidden');
-            } else {
-              nextBtn.classList.remove('hidden');
-            }
+            if (step === totalSteps) nextBtn.classList.add('hidden');
+            else nextBtn.classList.remove('hidden');
           }
           
           if (gotItBtn) {
-            if (step === totalSteps) {
-              gotItBtn.classList.remove('hidden');
-            } else {
-              gotItBtn.classList.add('hidden');
-            }
+            if (step === totalSteps) gotItBtn.classList.remove('hidden');
+            else gotItBtn.classList.add('hidden');
           }
         }
         
         function nextStep() {
-          if (currentStep < totalSteps) {
-            updateStep(currentStep + 1);
-          }
+          if (currentStep < totalSteps) updateStep(currentStep + 1);
         }
         
         function prevStep() {
-          if (currentStep > 1) {
-            updateStep(currentStep - 1);
-          }
+          if (currentStep > 1) updateStep(currentStep - 1);
         }
         
         function completeGuide() {
@@ -593,9 +778,7 @@
           document.querySelectorAll('.dot').forEach(dot => {
             dot.addEventListener('click', () => {
               const step = parseInt(dot.dataset.dot);
-              if (step <= currentStep) {
-                updateStep(step);
-              }
+              if (step <= currentStep) updateStep(step);
             });
           });
           
@@ -610,6 +793,84 @@
                 e.preventDefault();
                 completeGuide();
               }
+            }
+          });
+        }
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+      })();
+
+      // ========================================
+      // DESKTOP FRIEND POPUP LOGIC
+      // ========================================
+      (function() {
+        const DESKTOP_FRIEND_KEY = 'learny_desktop_friend_seen';
+        const isDesktop = window.innerWidth > 768;
+        
+        function hasSeenFriendPopup() {
+          return localStorage.getItem(DESKTOP_FRIEND_KEY) === 'true';
+        }
+        
+        function markFriendPopupAsSeen() {
+          localStorage.setItem(DESKTOP_FRIEND_KEY, 'true');
+        }
+        
+        function showFriendPopup() {
+          if (!isDesktop || hasSeenFriendPopup()) return;
+          
+          // Show after a short delay, after install guide if it appears
+          setTimeout(() => {
+            const overlay = document.getElementById('desktop-friend-overlay');
+            if (overlay && !overlay.classList.contains('show')) {
+              overlay.classList.add('show');
+              document.body.style.overflow = 'hidden';
+            }
+          }, 1000);
+        }
+        
+        function hideFriendPopup() {
+          const overlay = document.getElementById('desktop-friend-overlay');
+          if (overlay) {
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+          }
+        }
+        
+        function completeFriendPopup() {
+          markFriendPopupAsSeen();
+          hideFriendPopup();
+        }
+        
+        function init() {
+          // Only show on desktop and if not seen before
+          if (isDesktop && !hasSeenFriendPopup()) {
+            showFriendPopup();
+          }
+          
+          // Close button
+          document.getElementById('desktop-friend-close')?.addEventListener('click', completeFriendPopup);
+          
+          // Got it button
+          document.getElementById('desktop-friend-gotit')?.addEventListener('click', completeFriendPopup);
+          
+          // Prevent closing by clicking overlay (force button click)
+          document.getElementById('desktop-friend-overlay')?.addEventListener('click', (e) => {
+            if (e.target.id === 'desktop-friend-overlay') {
+              // Optional: allow closing by clicking outside
+              // completeFriendPopup();
+            }
+          });
+          
+          // ESC key support
+          document.addEventListener('keydown', (e) => {
+            const overlay = document.getElementById('desktop-friend-overlay');
+            if (overlay && overlay.classList.contains('show') && e.key === 'Escape') {
+              e.preventDefault();
+              completeFriendPopup();
             }
           });
         }
