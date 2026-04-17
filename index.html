@@ -135,30 +135,33 @@
             </div>
 
             <!-- Quick Stats -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title"><i class="fa fa-bolt"></i> Quick Stats</h2>
-                </div>
-                <div class="quick-stats-list">
-                    <div class="stat-row">
-                        <span><img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">Total Days</span>
-                        <strong id="total-days">0</strong>
+            <!-- PREMIUM LOCKED QUICK STATS -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><i class="fa fa-bolt"></i> Quick Stats</h2>
+                        <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width: 18px; height: 18px;">
                     </div>
-                    <div class="stat-row">
-                        <span><img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">Avg Hours/Day</span>
-                        <strong id="avg-hours">0</strong>
+                    <div class="quick-stats-list">
+                        <div class="stat-row">
+                            <span>Total Days</span>
+                            <div id="total-days" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;"></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>Avg Hours/Day</span>
+                            <div id="avg-hours" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;"></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>Tasks Done</span>
+                            <div id="total-done" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;"></div>
+                        </div>
+                        <div class="stat-row">
+                            <span>Achievements</span>
+                            <div id="achievement-count" style="display:flex; align-items:center; gap:6px; color:var(--warning); font-weight:600;"><img src="https://i.postimg.cc/nrFwN8kn/gem.png" style="width:14px; height:14px;"></div>
+                        </div>
                     </div>
-                    <div class="stat-row">
-                        <span><img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">Tasks Done</span>
-                        <strong id="total-done">0</strong>
-                    </div>
-                    <div class="stat-row">
-                        <span><img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">Achievements</span>
-                        <strong id="achievement-count">0</strong>
-                    </div>
-                    <div class="stat-row">
-                        <a href="#" class="premium-link" style="color:var(--warning);font-weight:700;">
-                            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;">
+                    <div style="text-align: center; margin-top: 16px; padding: 12px; background: var(--bg-dark); border-radius: 8px;">
+                        <a href="premium.html" class="btn btn-sm" style="background: linear-gradient(135deg, var(--warning), #fbbf24); color: #000;">
+                            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;">
                             Unlock Stats
                         </a>
                     </div>
