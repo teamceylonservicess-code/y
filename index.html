@@ -101,7 +101,6 @@
 
             <!-- Grid Layout -->
             <div class="grid-2">
-                <!-- Study Hours Chart -->
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title"><i class="fa fa-chart-area"></i> Study Hours (10 Days)</h2>
@@ -110,20 +109,15 @@
                         <canvas id="studyChart" class="chart-canvas"></canvas>
                     </div>
                 </div>
-
-                <!-- Today Tasks -->
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title"><i class="fa fa-list-check"></i> Today Tasks</h2>
                         <a href="tasks.html" class="btn btn-sm btn-secondary">Manage</a>
                     </div>
-                    <div class="task-list" id="today-tasks-list">
-                        Loading...
-                    </div>
+                    <div class="task-list" id="today-tasks-list">Loading...</div>
                 </div>
             </div>
 
-            <!-- Exam Countdowns -->
             <div class="card mb-3">
                 <div class="card-header">
                     <h2 class="card-title"><i class="fa fa-calendar-check"></i> Exam Countdowns</h2>
@@ -134,7 +128,6 @@
                 </div>
             </div>
 
-            <!-- Quick Stats -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title"><i class="fa fa-bolt"></i> Quick Stats</h2>
@@ -165,7 +158,6 @@
                 </div>
             </div>
 
-            <!-- Quick Tips -->
             <div class="card mt-3">
                 <div class="card-header">
                     <h2 class="card-title"><i class="fa fa-lightbulb"></i> Quick Tips</h2>
@@ -178,7 +170,6 @@
                 </ul>
             </div>
 
-            <!-- Footer -->
             <footer class="site-footer">
                 Powered by <a href="contact.html">DC</a> | Made in Sri Lanka 🇱🇰
             </footer>
@@ -193,693 +184,332 @@
     </div>
 
     <!-- ========================================
-         INSTALLATION GUIDE POPUP (4 Steps)
+         PREMIUM MODERN POPUP CONTAINER
          ======================================== -->
-    <div id="install-guide-overlay" class="install-guide-overlay">
-      <div class="install-guide-popup">
-        <div class="install-guide-header">
-          <h2><i class="fa fa-mobile-alt"></i> Install Learny App</h2>
-          <p>Follow these simple steps to install our app</p>
-        </div>
-        
-        <div class="install-guide-steps">
-          <!-- Step 1 -->
-          <div class="install-step active" data-step="1">
-            <div class="step-number">Step 1 of 4</div>
-            <img src="https://i.postimg.cc/hjF5d7tw/2026-4-17-10h9m1s.jpg" alt="Click menu button">
-            <p class="step-title">In your browser click menu</p>
-            <p class="step-desc">Tap the three dots menu button in your browser</p>
+    <style>
+        /* Base Popup Overlay & Card */
+        .popup-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10000; opacity: 0; visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 20px;
+        }
+        .popup-overlay.show { opacity: 1; visibility: visible; }
+
+        .popup-card {
+            background: #151525;
+            border: 1px solid rgba(108, 43, 217, 0.4);
+            border-radius: 24px;
+            width: 100%; max-width: 480px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 40px rgba(108,43,217,0.15);
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden;
+            color: var(--text-main, #e2e8f0);
+        }
+        .popup-overlay.show .popup-card { transform: translateY(0) scale(1); }
+        .popup-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, #6c2bd9, #8b5cf6, #10b981);
+        }
+        .popup-content { padding: 28px; }
+
+        /* Install Guide Specifics */
+        .install-header { text-align: center; margin-bottom: 24px; }
+        .install-header h2 {
+            font-size: 22px; font-weight: 700; margin-bottom: 8px;
+            background: linear-gradient(to right, #8b5cf6, #e2e8f0);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .install-header p { color: var(--text-muted, #94a3b8); font-size: 13px; }
+
+        .step-container { min-height: 360px; display: flex; flex-direction: column; align-items: center; }
+        .step-item { display: none; animation: fadeSlideIn 0.4s ease forwards; text-align: center; width: 100%; }
+        .step-item.active { display: block; }
+        @keyframes fadeSlideIn { from { opacity: 0; transform: translateX(15px); } to { opacity: 1; transform: translateX(0); } }
+
+        .step-badge {
+            background: rgba(108, 43, 217, 0.2); color: #8b5cf6;
+            padding: 6px 14px; border-radius: 20px; font-size: 11px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            display: inline-block; margin-bottom: 16px; border: 1px solid rgba(108, 43, 217, 0.3);
+        }
+        .step-image {
+            width: 100%; max-width: 280px; border-radius: 16px;
+            margin: 0 auto 20px; border: 2px solid rgba(255,255,255,0.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4); display: block;
+        }
+        .step-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+        .step-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        .popup-dots { display: flex; justify-content: center; gap: 8px; margin: 20px 0; }
+        .popup-dot {
+            width: 8px; height: 8px; border-radius: 50%; background: var(--bg-dark);
+            border: 2px solid rgba(255,255,255,0.1); transition: all 0.3s ease; cursor: pointer;
+        }
+        .popup-dot.active { background: #8b5cf6; border-color: #8b5cf6; transform: scale(1.3); }
+
+        .popup-controls { display: flex; gap: 12px; margin-top: 8px; }
+        .popup-btn {
+            flex: 1; padding: 12px; border: none; border-radius: 12px;
+            font-weight: 600; font-size: 14px; cursor: pointer;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .popup-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .popup-btn-prev { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+        .popup-btn-prev:hover:not(:disabled) { background: rgba(255,255,255,0.1); }
+        .popup-btn-next { background: #6c2bd9; color: #fff; }
+        .popup-btn-next:hover { background: #7c3aed; box-shadow: 0 4px 15px rgba(108,43,217,0.4); }
+        .popup-btn-gotit { background: linear-gradient(135deg, #10b981, #059669); color: #fff; }
+        .popup-btn-gotit:hover { box-shadow: 0 4px 15px rgba(16,185,129,0.4); }
+
+        /* Desktop Friend Specifics */
+        .friend-icon-wrap {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, #6c2bd9, #8b5cf6);
+            border-radius: 24px; margin: 0 auto 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px; color: #fff;
+            box-shadow: 0 10px 30px rgba(108,43,217,0.4);
+            animation: floatIcon 4s ease-in-out infinite;
+        }
+        @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .friend-content { text-align: center; padding-top: 10px; }
+        .friend-title {
+            font-size: 24px; font-weight: 800; margin-bottom: 12px;
+            background: linear-gradient(to right, #8b5cf6, #e2e8f0);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .friend-text { color: var(--text-muted); font-size: 14px; line-height: 1.7; margin-bottom: 24px; }
+        .friend-features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin-bottom: 24px; text-align: left; }
+        .friend-feat {
+            display: flex; align-items: center; gap: 10px; font-size: 13px;
+            color: var(--text-muted); background: rgba(255,255,255,0.03);
+            padding: 8px 12px; border-radius: 10px;
+        }
+        .friend-feat i { color: #10b981; }
+        .friend-tip {
+            background: rgba(108,43,217,0.1); border: 1px solid rgba(108,43,217,0.3);
+            border-radius: 12px; padding: 12px; margin-bottom: 24px;
+            font-size: 13px; color: var(--text-muted); text-align: left;
+        }
+        .friend-tip strong { color: #8b5cf6; }
+        .friend-btn {
+            width: 100%; padding: 14px;
+            background: linear-gradient(135deg, #6c2bd9, #8b5cf6);
+            color: #fff; border: none; border-radius: 12px;
+            font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .friend-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(108,43,217,0.5); }
+
+        .close-btn {
+            position: absolute; top: 16px; right: 16px;
+            width: 32px; height: 32px; background: rgba(255,255,255,0.1);
+            border: none; border-radius: 50%; color: var(--text-muted);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .close-btn:hover { background: #ef4444; color: #fff; transform: rotate(90deg); }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 768px) {
+            #desktop-friend-overlay { display: none !important; }
+            .popup-card { max-width: 100%; margin: 10px; }
+            .step-image { max-width: 240px; }
+            .friend-features { grid-template-columns: 1fr; }
+            .popup-controls { flex-direction: column; }
+        }
+    </style>
+
+    <!-- 1. INSTALLATION GUIDE POPUP -->
+    <div id="install-guide-overlay" class="popup-overlay">
+      <div class="popup-card">
+        <button class="close-btn hidden"><i class="fa fa-times"></i></button>
+        <div class="popup-content">
+          <div class="install-header">
+            <h2><i class="fa fa-mobile-alt"></i> Install Learny App</h2>
+            <p>Follow these simple steps to install our app</p>
           </div>
           
-          <!-- Step 2 -->
-          <div class="install-step" data-step="2">
-            <div class="step-number">Step 2 of 4</div>
-            <img src="https://i.postimg.cc/brMh4wTY/2026-4-17-10h10m27s.jpg" alt="Add to home screen">
-            <p class="step-title">Click add to home screen</p>
-            <p class="step-desc">Select "Add to Home Screen" from the menu</p>
+          <div class="step-container">
+            <div class="step-item active" data-step="1">
+              <div class="step-badge">Step 1 of 4</div>
+              <img src="https://i.postimg.cc/hjF5d7tw/2026-4-17-10h9m1s.jpg" alt="Click menu" class="step-image">
+              <p class="step-title">In your browser click menu</p>
+              <p class="step-desc">Tap the three dots menu button in your browser</p>
+            </div>
+            <div class="step-item" data-step="2">
+              <div class="step-badge">Step 2 of 4</div>
+              <img src="https://i.postimg.cc/brMh4wTY/2026-4-17-10h10m27s.jpg" alt="Add to home screen" class="step-image">
+              <p class="step-title">Click add to home screen</p>
+              <p class="step-desc">Select "Add to Home Screen" from the menu</p>
+            </div>
+            <div class="step-item" data-step="3">
+              <div class="step-badge">Step 3 of 4</div>
+              <img src="https://i.postimg.cc/nVGPXrft/2026-4-17-10h11m38s.jpg" alt="Install button" class="step-image">
+              <p class="step-title">Click install button</p>
+              <p class="step-desc">Tap the install button to continue</p>
+            </div>
+            <div class="step-item" data-step="4">
+              <div class="step-badge">Step 4 of 4</div>
+              <img src="https://i.postimg.cc/sXRTXdnv/2026-4-17-10h13m22s.jpg" alt="Final install" class="step-image">
+              <p class="step-title">Then install</p>
+              <p class="step-desc">Confirm the installation and you're done!</p>
+            </div>
           </div>
           
-          <!-- Step 3 -->
-          <div class="install-step" data-step="3">
-            <div class="step-number">Step 3 of 4</div>
-            <img src="https://i.postimg.cc/nVGPXrft/2026-4-17-10h11m38s.jpg" alt="Install button">
-            <p class="step-title">Click install button</p>
-            <p class="step-desc">Tap the install button to continue</p>
+          <div class="popup-dots">
+            <span class="popup-dot active" data-dot="1"></span>
+            <span class="popup-dot" data-dot="2"></span>
+            <span class="popup-dot" data-dot="3"></span>
+            <span class="popup-dot" data-dot="4"></span>
           </div>
           
-          <!-- Step 4 -->
-          <div class="install-step" data-step="4">
-            <div class="step-number">Step 4 of 4</div>
-            <img src="https://i.postimg.cc/sXRTXdnv/2026-4-17-10h13m22s.jpg" alt="Final install">
-            <p class="step-title">Then install</p>
-            <p class="step-desc">Confirm the installation and you're done!</p>
+          <div class="popup-controls">
+            <button id="install-prev" class="popup-btn popup-btn-prev" disabled>
+              <i class="fa fa-arrow-left"></i> Back
+            </button>
+            <button id="install-next" class="popup-btn popup-btn-next">
+              Next <i class="fa fa-arrow-right"></i>
+            </button>
+            <button id="install-gotit" class="popup-btn popup-btn-gotit hidden">
+              <i class="fa fa-check"></i> Got it!
+            </button>
           </div>
         </div>
-        
-        <div class="install-guide-dots">
-          <span class="dot active" data-dot="1"></span>
-          <span class="dot" data-dot="2"></span>
-          <span class="dot" data-dot="3"></span>
-          <span class="dot" data-dot="4"></span>
-        </div>
-        
-        <div class="install-guide-controls">
-          <button id="install-prev" class="install-btn install-btn-prev" disabled>
-            <i class="fa fa-arrow-left"></i> Previous
-          </button>
-          <button id="install-next" class="install-btn install-btn-next">
-            Next <i class="fa fa-arrow-right"></i>
-          </button>
-          <button id="install-gotit" class="install-btn install-btn-gotit hidden">
-            <i class="fa fa-check"></i> Got it!
-          </button>
+      </div>
+    </div>
+
+    <!-- 2. DESKTOP FRIEND POPUP -->
+    <div id="desktop-friend-overlay" class="popup-overlay">
+      <div class="popup-card">
+        <button class="close-btn" id="friend-close"><i class="fa fa-times"></i></button>
+        <div class="popup-content">
+          <div class="friend-content">
+            <div class="friend-icon-wrap"><i class="fa fa-robot"></i></div>
+            <h3 class="friend-title">👋 Hey there, Study Buddy!</h3>
+            <p class="friend-text">
+              Welcome to <strong>Learny</strong> — your personal study companion! 🎓<br>
+              I'm here to help you stay focused, track progress, and achieve your academic goals.
+            </p>
+            
+            <div class="friend-features">
+              <div class="friend-feat"><i class="fa fa-check-circle"></i><span>Smart task management</span></div>
+              <div class="friend-feat"><i class="fa fa-check-circle"></i><span>Pomodoro focus timer</span></div>
+              <div class="friend-feat"><i class="fa fa-check-circle"></i><span>Progress analytics</span></div>
+              <div class="friend-feat"><i class="fa fa-check-circle"></i><span>Motivation & quotes</span></div>
+            </div>
+            
+            <div class="friend-tip">
+              💡 <strong>Pro Tip:</strong> Install Learny as a PWA for offline access and faster loading!
+            </div>
+            
+            <button class="friend-btn" id="friend-gotit">
+              <i class="fa fa-sparkles"></i> Let's Get Started!
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- ========================================
-         DESKTOP FRIEND POPUP (Professional)
+         POPUP LOGIC SCRIPTS
          ======================================== -->
-    <div id="desktop-friend-overlay" class="desktop-friend-overlay">
-      <div class="desktop-friend-popup">
-        <button class="desktop-friend-close" id="desktop-friend-close" aria-label="Close">
-          <i class="fa fa-times"></i>
-        </button>
-        
-        <div class="desktop-friend-content">
-          <div class="desktop-friend-icon">
-            <i class="fa fa-robot"></i>
-          </div>
-          
-          <h3 class="desktop-friend-title">👋 Hey there, Study Buddy!</h3>
-          
-          <p class="desktop-friend-message">
-            Welcome to <strong>Learny</strong> — your personal study companion! 🎓<br><br>
-            I'm here to help you stay focused, track progress, and achieve your academic goals.
-          </p>
-          
-          <div class="desktop-friend-features">
-            <div class="feature-item">
-              <i class="fa fa-check-circle"></i>
-              <span>Smart task management</span>
-            </div>
-            <div class="feature-item">
-              <i class="fa fa-check-circle"></i>
-              <span>Pomodoro focus timer</span>
-            </div>
-            <div class="feature-item">
-              <i class="fa fa-check-circle"></i>
-              <span>Progress analytics</span>
-            </div>
-            <div class="feature-item">
-              <i class="fa fa-check-circle"></i>
-              <span>Motivation & quotes</span>
-            </div>
-          </div>
-          
-          <p class="desktop-friend-tip">
-            💡 <strong>Pro Tip:</strong> Install Learny as a PWA for offline access and faster loading!
-          </p>
-          
-          <button class="desktop-friend-btn" id="desktop-friend-gotit">
-            <i class="fa fa-sparkles"></i> Let's Get Started!
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <style>
-      /* Installation Guide Styles */
-      .install-guide-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-      }
-      
-      .install-guide-overlay.show {
-        opacity: 1;
-        visibility: visible;
-      }
-      
-      .install-guide-popup {
-        background: var(--bg-card, #1a1a2e);
-        border-radius: 20px;
-        padding: 30px;
-        max-width: 500px;
-        width: 90%;
-        border: 2px solid var(--primary, #6c2bd9);
-        box-shadow: 0 10px 40px rgba(108, 43, 217, 0.4);
-        animation: popupSlideIn 0.4s ease;
-      }
-      
-      @keyframes popupSlideIn {
-        from { opacity: 0; transform: translateY(-30px) scale(0.95); }
-        to { opacity: 1; transform: translateY(0) scale(1); }
-      }
-      
-      .install-guide-header {
-        text-align: center;
-        margin-bottom: 25px;
-      }
-      
-      .install-guide-header h2 {
-        color: var(--primary-light, #8b5cf6);
-        font-size: 24px;
-        margin-bottom: 8px;
-      }
-      
-      .install-guide-header h2 i { margin-right: 10px; }
-      .install-guide-header p { color: var(--text-muted, #94a3b8); font-size: 14px; }
-      
-      .install-guide-steps { position: relative; min-height: 420px; }
-      
-      .install-step {
-        display: none;
-        text-align: center;
-        animation: fadeInStep 0.4s ease;
-      }
-      
-      .install-step.active { display: block; }
-      
-      @keyframes fadeInStep {
-        from { opacity: 0; transform: translateX(20px); }
-        to { opacity: 1; transform: translateX(0); }
-      }
-      
-      .step-number {
-        background: linear-gradient(135deg, var(--primary, #6c2bd9), var(--primary-light, #8b5cf6));
-        color: #fff;
-        padding: 6px 16px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
-        display: inline-block;
-        margin-bottom: 15px;
-      }
-      
-      .install-step img {
-        width: 100%;
-        max-width: 320px;
-        border-radius: 12px;
-        border: 2px solid var(--border, rgba(255, 255, 255, 0.08));
-        margin-bottom: 15px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      }
-      
-      .step-title {
-        color: var(--text-main, #e2e8f0);
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-      
-      .step-desc {
-        color: var(--text-muted, #94a3b8);
-        font-size: 14px;
-        line-height: 1.5;
-      }
-      
-      .install-guide-dots {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin: 25px 0;
-      }
-      
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--bg-dark, #0f0f1a);
-        border: 2px solid var(--primary, #6c2bd9);
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-      
-      .dot.active {
-        background: var(--primary, #6c2bd9);
-        transform: scale(1.2);
-      }
-      
-      .install-guide-controls {
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-        margin-top: 20px;
-      }
-      
-      .install-btn {
-        padding: 12px 24px;
-        border: none;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-      
-      .install-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-      
-      .install-btn-prev {
-        background: var(--bg-dark, #0f0f1a);
-        color: var(--text-main, #e2e8f0);
-        border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
-      }
-      
-      .install-btn-prev:not(:disabled):hover { background: var(--bg-card-hover, #22223a); }
-      
-      .install-btn-next {
-        background: linear-gradient(135deg, var(--primary, #6c2bd9), var(--primary-light, #8b5cf6));
-        color: #fff;
-      }
-      
-      .install-btn-next:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(108, 43, 217, 0.4);
-      }
-      
-      .install-btn-gotit {
-        background: linear-gradient(135deg, var(--success, #10b981), #34d399);
-        color: #fff;
-      }
-      
-      .install-btn-gotit:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-      }
-      
-      .hidden { display: none !important; }
-      
-      /* Desktop Friend Popup Styles */
-      .desktop-friend-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.85);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        backdrop-filter: blur(4px);
-      }
-      
-      .desktop-friend-overlay.show {
-        opacity: 1;
-        visibility: visible;
-      }
-      
-      .desktop-friend-popup {
-        background: var(--bg-card, #1a1a2e);
-        border-radius: 24px;
-        padding: 0;
-        max-width: 480px;
-        width: 92%;
-        border: 2px solid var(--primary, #6c2bd9);
-        box-shadow: 0 20px 60px rgba(108, 43, 217, 0.5);
-        animation: friendPopupIn 0.5s ease;
-        position: relative;
-        overflow: hidden;
-      }
-      
-      @keyframes friendPopupIn {
-        from {
-          opacity: 0;
-          transform: translateY(40px) scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
-      
-      .desktop-friend-popup::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--success));
-      }
-      
-      .desktop-friend-close {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: var(--bg-dark, #0f0f1a);
-        border: 1px solid var(--border, rgba(255,255,255,0.08));
-        color: var(--text-muted, #94a3b8);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        z-index: 2;
-      }
-      
-      .desktop-friend-close:hover {
-        background: var(--danger, #ef4444);
-        color: #fff;
-        border-color: var(--danger);
-        transform: rotate(90deg);
-      }
-      
-      .desktop-friend-content {
-        padding: 32px 28px 28px;
-        text-align: center;
-      }
-      
-      .desktop-friend-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 20px;
-        background: linear-gradient(135deg, var(--primary), var(--primary-light));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 36px;
-        color: #fff;
-        animation: floatIcon 3s ease-in-out infinite;
-        box-shadow: 0 8px 24px rgba(108, 43, 217, 0.4);
-      }
-      
-      @keyframes floatIcon {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
-      }
-      
-      .desktop-friend-title {
-        font-size: 22px;
-        font-weight: 700;
-        color: var(--text-main, #e2e8f0);
-        margin-bottom: 16px;
-        line-height: 1.4;
-      }
-      
-      .desktop-friend-message {
-        color: var(--text-muted, #94a3b8);
-        font-size: 14px;
-        line-height: 1.7;
-        margin-bottom: 24px;
-      }
-      
-      .desktop-friend-message strong {
-        color: var(--primary-light, #8b5cf6);
-      }
-      
-      .desktop-friend-features {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px 16px;
-        margin-bottom: 24px;
-        text-align: left;
-      }
-      
-      .feature-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 13px;
-        color: var(--text-muted, #94a3b8);
-      }
-      
-      .feature-item i {
-        color: var(--success, #10b981);
-        font-size: 16px;
-        flex-shrink: 0;
-      }
-      
-      .desktop-friend-tip {
-        background: rgba(108, 43, 217, 0.12);
-        border: 1px solid var(--primary, #6c2bd9);
-        border-radius: 12px;
-        padding: 12px 16px;
-        margin-bottom: 24px;
-        font-size: 13px;
-        color: var(--text-muted, #94a3b8);
-        text-align: left;
-      }
-      
-      .desktop-friend-tip strong {
-        color: var(--primary-light, #8b5cf6);
-      }
-      
-      .desktop-friend-btn {
-        width: 100%;
-        padding: 14px 24px;
-        background: linear-gradient(135deg, var(--primary, #6c2bd9), var(--primary-light, #8b5cf6));
-        color: #fff;
-        border: none;
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 15px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
-      
-      .desktop-friend-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(108, 43, 217, 0.5);
-      }
-      
-      .desktop-friend-btn:active {
-        transform: translateY(0);
-      }
-      
-      /* Responsive */
-      @media (max-width: 768px) {
-        .desktop-friend-overlay { display: none !important; }
-        
-        .install-guide-popup { padding: 20px; }
-        .install-guide-steps { min-height: 380px; }
-        .install-step img { max-width: 100%; }
-        .step-title { font-size: 16px; }
-        .install-guide-controls { flex-direction: column; }
-        .install-btn { width: 100%; justify-content: center; }
-      }
-      
-      @media (max-width: 480px) {
-        .desktop-friend-features { grid-template-columns: 1fr; }
-      }
-    </style>
-
     <script>
-      // ========================================
-      // INSTALLATION GUIDE POPUP LOGIC
-      // ========================================
+      // INSTALLATION GUIDE POPUP
       (function() {
-        const HAS_SEEN_GUIDE_KEY = 'learny_install_guide_seen';
+        const KEY = 'learny_install_guide_seen';
         let currentStep = 1;
         const totalSteps = 4;
         
-        function hasSeenGuide() {
-          return localStorage.getItem(HAS_SEEN_GUIDE_KEY) === 'true';
+        function show() {
+          const el = document.getElementById('install-guide-overlay');
+          if (el) { el.classList.add('show'); document.body.style.overflow = 'hidden'; }
         }
-        
-        function markGuideAsSeen() {
-          localStorage.setItem(HAS_SEEN_GUIDE_KEY, 'true');
+        function hide() {
+          const el = document.getElementById('install-guide-overlay');
+          if (el) { el.classList.remove('show'); document.body.style.overflow = ''; }
         }
-        
-        function showGuide() {
-          const overlay = document.getElementById('install-guide-overlay');
-          if (overlay) {
-            overlay.classList.add('show');
-            document.body.style.overflow = 'hidden';
-          }
-        }
-        
-        function hideGuide() {
-          const overlay = document.getElementById('install-guide-overlay');
-          if (overlay) {
-            overlay.classList.remove('show');
-            document.body.style.overflow = '';
-          }
-        }
+        function markSeen() { localStorage.setItem(KEY, 'true'); }
+        function hasSeen() { return localStorage.getItem(KEY) === 'true'; }
         
         function updateStep(step) {
           currentStep = step;
-          
-          document.querySelectorAll('.install-step').forEach(s => {
-            s.classList.remove('active');
-            if (parseInt(s.dataset.step) === step) s.classList.add('active');
+          document.querySelectorAll('.step-item').forEach(s => {
+            s.classList.toggle('active', parseInt(s.dataset.step) === step);
+          });
+          document.querySelectorAll('.popup-dot').forEach(d => {
+            d.classList.toggle('active', parseInt(d.dataset.dot) === step);
           });
           
-          document.querySelectorAll('.dot').forEach(d => {
-            d.classList.remove('active');
-            if (parseInt(d.dataset.dot) === step) d.classList.add('active');
-          });
+          const prev = document.getElementById('install-prev');
+          const next = document.getElementById('install-next');
+          const gotit = document.getElementById('install-gotit');
           
-          const prevBtn = document.getElementById('install-prev');
-          const nextBtn = document.getElementById('install-next');
-          const gotItBtn = document.getElementById('install-gotit');
-          
-          if (prevBtn) prevBtn.disabled = step === 1;
-          
-          if (nextBtn) {
-            if (step === totalSteps) nextBtn.classList.add('hidden');
-            else nextBtn.classList.remove('hidden');
-          }
-          
-          if (gotItBtn) {
-            if (step === totalSteps) gotItBtn.classList.remove('hidden');
-            else gotItBtn.classList.add('hidden');
-          }
+          if (prev) prev.disabled = step === 1;
+          if (next) step === totalSteps ? next.classList.add('hidden') : next.classList.remove('hidden');
+          if (gotit) step === totalSteps ? gotit.classList.remove('hidden') : gotit.classList.add('hidden');
         }
-        
-        function nextStep() {
-          if (currentStep < totalSteps) updateStep(currentStep + 1);
-        }
-        
-        function prevStep() {
-          if (currentStep > 1) updateStep(currentStep - 1);
-        }
-        
-        function completeGuide() {
-          markGuideAsSeen();
-          hideGuide();
-        }
-        
+
         function init() {
-          if (!hasSeenGuide()) {
-            setTimeout(() => { showGuide(); }, 500);
-          }
+          if (!hasSeen()) setTimeout(show, 600);
           
-          document.getElementById('install-next')?.addEventListener('click', nextStep);
-          document.getElementById('install-prev')?.addEventListener('click', prevStep);
-          document.getElementById('install-gotit')?.addEventListener('click', completeGuide);
+          document.getElementById('install-next')?.addEventListener('click', () => currentStep < totalSteps && updateStep(currentStep + 1));
+          document.getElementById('install-prev')?.addEventListener('click', () => currentStep > 1 && updateStep(currentStep - 1));
+          document.getElementById('install-gotit')?.addEventListener('click', () => { markSeen(); hide(); });
           
-          document.querySelectorAll('.dot').forEach(dot => {
-            dot.addEventListener('click', () => {
-              const step = parseInt(dot.dataset.dot);
-              if (step <= currentStep) updateStep(step);
+          document.querySelectorAll('.popup-dot').forEach(d => {
+            d.addEventListener('click', () => {
+              const s = parseInt(d.dataset.dot);
+              if (s <= currentStep) updateStep(s);
             });
           });
           
-          document.getElementById('install-guide-overlay')?.addEventListener('click', (e) => {
-            e.stopPropagation();
-          });
-          
-          document.addEventListener('keydown', (e) => {
-            const overlay = document.getElementById('install-guide-overlay');
-            if (overlay && overlay.classList.contains('show')) {
-              if (e.key === 'Escape' && currentStep === totalSteps) {
-                e.preventDefault();
-                completeGuide();
-              }
+          document.getElementById('install-guide-overlay')?.addEventListener('click', e => e.target === e.currentTarget && e.stopPropagation());
+          document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && document.getElementById('install-guide-overlay').classList.contains('show')) {
+              if (currentStep === totalSteps) { markSeen(); hide(); }
             }
           });
         }
-        
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', init);
-        } else {
-          init();
-        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
       })();
 
-      // ========================================
-      // DESKTOP FRIEND POPUP LOGIC
-      // ========================================
+      // DESKTOP FRIEND POPUP
       (function() {
-        const DESKTOP_FRIEND_KEY = 'learny_desktop_friend_seen';
+        const KEY = 'learny_desktop_friend_seen';
         const isDesktop = window.innerWidth > 768;
         
-        function hasSeenFriendPopup() {
-          return localStorage.getItem(DESKTOP_FRIEND_KEY) === 'true';
+        function show() {
+          const el = document.getElementById('desktop-friend-overlay');
+          if (el && !el.classList.contains('show')) { el.classList.add('show'); document.body.style.overflow = 'hidden'; }
         }
-        
-        function markFriendPopupAsSeen() {
-          localStorage.setItem(DESKTOP_FRIEND_KEY, 'true');
+        function hide() {
+          const el = document.getElementById('desktop-friend-overlay');
+          if (el) { el.classList.remove('show'); document.body.style.overflow = ''; }
         }
-        
-        function showFriendPopup() {
-          if (!isDesktop || hasSeenFriendPopup()) return;
-          
-          // Show after a short delay, after install guide if it appears
-          setTimeout(() => {
-            const overlay = document.getElementById('desktop-friend-overlay');
-            if (overlay && !overlay.classList.contains('show')) {
-              overlay.classList.add('show');
-              document.body.style.overflow = 'hidden';
-            }
-          }, 1000);
-        }
-        
-        function hideFriendPopup() {
-          const overlay = document.getElementById('desktop-friend-overlay');
-          if (overlay) {
-            overlay.classList.remove('show');
-            document.body.style.overflow = '';
-          }
-        }
-        
-        function completeFriendPopup() {
-          markFriendPopupAsSeen();
-          hideFriendPopup();
-        }
+        function markSeen() { localStorage.setItem(KEY, 'true'); }
         
         function init() {
-          // Only show on desktop and if not seen before
-          if (isDesktop && !hasSeenFriendPopup()) {
-            showFriendPopup();
+          if (isDesktop && localStorage.getItem(KEY) !== 'true') {
+            setTimeout(() => {
+              if (!document.getElementById('install-guide-overlay').classList.contains('show')) show();
+            }, 800);
           }
           
-          // Close button
-          document.getElementById('desktop-friend-close')?.addEventListener('click', completeFriendPopup);
-          
-          // Got it button
-          document.getElementById('desktop-friend-gotit')?.addEventListener('click', completeFriendPopup);
-          
-          // Prevent closing by clicking overlay (force button click)
-          document.getElementById('desktop-friend-overlay')?.addEventListener('click', (e) => {
-            if (e.target.id === 'desktop-friend-overlay') {
-              // Optional: allow closing by clicking outside
-              // completeFriendPopup();
-            }
-          });
-          
-          // ESC key support
-          document.addEventListener('keydown', (e) => {
-            const overlay = document.getElementById('desktop-friend-overlay');
-            if (overlay && overlay.classList.contains('show') && e.key === 'Escape') {
-              e.preventDefault();
-              completeFriendPopup();
+          document.getElementById('friend-close')?.addEventListener('click', () => { markSeen(); hide(); });
+          document.getElementById('friend-gotit')?.addEventListener('click', () => { markSeen(); hide(); });
+          document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && document.getElementById('desktop-friend-overlay').classList.contains('show')) {
+              markSeen(); hide();
             }
           });
         }
-        
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', init);
-        } else {
-          init();
-        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
       })();
     </script>
 
