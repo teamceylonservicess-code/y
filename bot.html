@@ -129,6 +129,86 @@
             transition: opacity 0.2s;
         }
         .clear-chat-btn:hover { opacity: 0.8; }
+
+        /* ========================================
+PREMIUM FEATURES - ENHANCED STYLING
+======================================== */
+.premium-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+    list-style: none;
+    padding: 0;
+}
+
+.premium-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.06) 0%, rgba(245, 158, 11, 0.02) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--warning), #fbbf24);
+    border-radius: 2px;
+}
+
+.premium-feature:hover {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0.04) 100%);
+    border-color: var(--warning);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+}
+
+.premium-feature i {
+    color: var(--warning);
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.premium-heading {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.premium-heading .crown {
+    color: var(--warning);
+}
+
+@media (max-width: 600px) {
+    .premium-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+body.light .premium-feature {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.03) 100%);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+body.light .premium-feature:hover {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.06) 100%);
+}
     </style>
 </head>
 <body>
@@ -181,16 +261,14 @@
                 <p style="color: var(--text-muted); margin-bottom: 16px;">
                     Enter your Premium Token to unlock unlimited AI-powered study assistance. Your Premium Token is stored locally and never transmitted elsewhere.
                 </p>
-<div class="premium-feature-tab">
-<div class="features-title"> Premium Features</div>
-<ul class="features-list">
-<li>Unlimited AI Study Assistance</li>
-<li>Smart Document & PDF Analysis</li>
-<li>Personalized Quiz & Flashcard Generation</li
-<li>Real-time Progress & Weakness Tracking</li>
-<li>24/7 Homework & Concept Breakdown</li>
+<h3 class="premium-heading"><i class="fas fa-crown crown"></i> Premium Features</h3>
+<ul class="premium-features">
+    <li class="premium-feature"><i class="fas fa-infinity"></i> Unlimited AI Study Assistance</li>
+    <li class="premium-feature"><i class="fas fa-file-pdf"></i> Smart Document & PDF Analysis</li>
+    <li class="premium-feature"><i class="fas fa-brain"></i> Personalized Quiz & Flashcard Generation</li>
+    <li class="premium-feature"><i class="fas fa-chart-line"></i> Real-time Progress & Weakness Tracking</li>
+    <li class="premium-feature"><i class="fas fa-clock"></i> 24/7 Homework & Concept Breakdown</li>
 </ul>
-</div>
                 <div class="form-group">
                     <input type="password" id="api-key-input" class="form-control" placeholder="Enter Your Premium Token" autocomplete="off">
                 </div>
