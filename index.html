@@ -2,228 +2,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Learny">
+    <link rel="manifest" href="manifest.json">
     <title>Learny - Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Tutorial Popup Styles -->
-    <style>
-        .tutorial-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .tutorial-popup {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .tutorial-step {
-            display: none;
-        }
-
-        .tutorial-step.active {
-            display: block;
-        }
-
-        .tutorial-image {
-            width: 100%;
-            max-height: 300px;
-            object-fit: contain;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        .tutorial-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .tutorial-description {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .tutorial-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #ddd;
-            transition: background 0.3s;
-        }
-
-        .dot.active {
-            background: #4CAF50;
-        }
-
-        .tutorial-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .btn-next, .btn-got-it {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn-next:hover, .btn-got-it:hover {
-            background: #45a049;
-        }
-
-        .btn-next:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
             <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Learny Logo" class="logo">
             <h2>Learny</h2>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">📊 Dashboard</a></li>
-                <li><a href="profile.html">👤 Profile</a></li>
-                <li><a href="bot.html">🤖 LearnyAI</a></li>
-                <li><a href="tasks.html">✅ Tasks</a></li>
-                <li><a href="time.html">⏱️ Time Tracker</a></li>
-                <li><a href="achievements.html">🏆 Achievements</a></li>
-                <li><a href="motivation.html">💪 Motivation</a></li>
-                <li><a href="music.html">🎵 Music</a></li>
-                <li><a href="pomodoro.html">🍅 Pomodoro</a></li>
-                <li><a href="mark.html">📈 Mark Analyze</a></li>
-                <li><a href="pastpapers.html">📝 Past Papers</a></li>
-                <li><a href="countdown.html">⏳ Countdown</a></li>
-                <li><a href="settings.html">⚙️ Settings</a></li>
-                <li><a href="contact.html">📧 Contact</a></li>
-                <li><a href="rate.html">⭐ Rate Us</a></li>
-            </ul>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+            <a href="bot.html"><i class="fas fa-robot"></i> LearnyAI</a>
+            <a href="tasks.html"><i class="fas fa-tasks"></i> Tasks</a>
+            <a href="time.html"><i class="fas fa-clock"></i> Time Tracker</a>
+            <a href="achievements.html"><i class="fas fa-trophy"></i> Achievements</a>
+            <a href="motivation.html"><i class="fas fa-heart"></i> Motivation</a>
+            <a href="music.html"><i class="fas fa-music"></i> Music</a>
+            <a href="pomodoro.html"><i class="fas fa-stopwatch"></i> Pomodoro</a>
+            <a href="mark.html"><i class="fas fa-chart-line"></i> Mark Analyze</a>
+            <a href="pastpapers.html"><i class="fas fa-file-alt"></i> Past Papers</a>
+            <a href="countdown.html"><i class="fas fa-hourglass-half"></i> Countdown</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="rate.html"><i class="fas fa-star"></i> Rate Us</a>
         </nav>
-        <div class="premium-section">
-            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" class="premium-icon">
+        <div class="premium-banner">
+            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium">
             <span>Get Premium</span>
         </div>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content">
-        <div class="header">
+        <!-- Header -->
+        <header class="header">
             <h1>Welcome, User!</h1>
-            <p>📊 Dashboard</p>
+            <p>Dashboard</p>
+        </header>
+
+        <!-- Welcome Card -->
+        <div class="welcome-card">
+            <img src="https://i.postimg.cc/QdPYLqrV/AIRetouch-20260412-135002012.png" alt="Welcome" class="welcome-img">
+            <h3>Good morning, User</h3>
+            <p>Let's start learning 🎯</p>
         </div>
 
-        <div class="greeting-section">
-            <img src="https://i.postimg.cc/QdPYLqrV/AIRetouch-20260412-135002012.png" alt="Greeting" class="greeting-img">
-            <div class="greeting-text">
-                <h2>Good morning, User</h2>
-                <p>Let's start learning 🎯</p>
-            </div>
-        </div>
-
+        <!-- Stats Grid -->
         <div class="stats-grid">
             <div class="stat-card">
-                <h3>0</h3>
+                <h4>0</h4>
                 <p>Today Tasks</p>
             </div>
             <div class="stat-card">
-                <h3>0</h3>
+                <h4>0</h4>
                 <p>Day Streak</p>
             </div>
             <div class="stat-card">
-                <h3>0h</h3>
+                <h4>0h</h4>
                 <p>Today Study Time</p>
             </div>
             <div class="stat-card">
-                <h3>0h</h3>
+                <h4>0h</h4>
                 <p>Total Hours</p>
             </div>
         </div>
 
-        <div class="charts-section">
-            <div class="chart-container">
-                <h3>Study Hours (10 Days)</h3>
-                <canvas id="studyChart"></canvas>
-            </div>
-            <div class="tasks-container">
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <h3>Study Hours (10 Days)</h3>
+            <canvas id="studyChart"></canvas>
+        </div>
+
+        <!-- Today Tasks -->
+        <div class="tasks-section">
+            <div class="section-header">
                 <h3>Today Tasks</h3>
                 <a href="tasks.html" class="manage-link">Manage</a>
-                <div id="todayTasks">
-                    <p>Loading...</p>
-                </div>
+            </div>
+            <div class="tasks-list">
+                <p class="loading">Loading...</p>
             </div>
         </div>
 
+        <!-- Exam Countdowns -->
         <div class="countdown-section">
-            <h3>Exam Countdowns</h3>
-            <a href="countdown.html" class="manage-link">Manage</a>
-            <div id="countdownList">
-                <p>No countdowns set. <a href="countdown.html">Add one</a></p>
+            <div class="section-header">
+                <h3>Exam Countdowns</h3>
+                <a href="countdown.html" class="manage-link">Manage</a>
+            </div>
+            <div class="countdown-list">
+                <p class="empty-msg">No countdowns set. <a href="countdown.html">Add one</a></p>
             </div>
         </div>
 
+        <!-- Quick Stats -->
         <div class="quick-stats">
             <h3>Quick Stats</h3>
-            <div class="stats-details">
+            <div class="stats-row">
                 <div class="stat-item">
-                    <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Icon">
+                    <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="icon">
                     <span>Total Days</span>
-                    <strong id="totalDays">0</strong>
                 </div>
                 <div class="stat-item">
-                    <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Icon">
+                    <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="icon">
                     <span>Avg Hours/Day</span>
-                    <strong id="avgHours">0</strong>
                 </div>
                 <div class="stat-item">
-                    <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Icon">
+                    <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="icon">
                     <span>Tasks Done</span>
-                    <strong id="tasksDone">0</strong>
                 </div>
                 <div class="stat-item">
-                    <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Icon">
+                    <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="icon">
                     <span>Achievements</span>
-                    <strong id="achievements">0</strong>
                 </div>
-                <div class="stat-item premium-lock">
-                    <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Icon">
-                    <span>Unlock Stats</span>
-                </div>
+            </div>
+            <div class="premium-unlock">
+                <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium">
+                <span>Unlock Stats</span>
             </div>
         </div>
 
-        <div class="tips-section">
+        <!-- Quick Tips -->
+        <div class="quick-tips">
             <h3>Quick Tips</h3>
             <ul>
                 <li>Log daily study hours in Time Tracker</li>
@@ -233,119 +143,324 @@
             </ul>
         </div>
 
-        <footer>
+        <!-- Footer -->
+        <footer class="footer">
             <p>Powered by <a href="contact.html">DC</a> | Made in Sri Lanka 🇱🇰</p>
         </footer>
     </div>
 
-    <div class="notification" id="notification"></div>
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notification-text"></span>
+    </div>
 
-    <!-- Tutorial Popup -->
-    <div class="tutorial-overlay" id="tutorialOverlay">
-        <div class="tutorial-popup">
+    <!-- Installation Guide Popup -->
+    <div id="installPopup" class="install-popup-overlay">
+        <div class="install-popup-container">
             <!-- Step 1 -->
-            <div class="tutorial-step active" data-step="1">
-                <div class="tutorial-title">Step 1: Open Menu</div>
-                <div class="tutorial-description">In your browser, click the menu button (three dots)</div>
-                <img src="https://i.postimg.cc/hjF5d7tw/2026-4-17-10h9m1s.jpg" alt="Step 1" class="tutorial-image">
+            <div class="install-step active" data-step="1">
+                <div class="install-step-image">
+                    <img src="https://i.postimg.cc/hjF5d7tw/2026-4-17-10h9m1s.jpg" alt="Step 1">
+                </div>
+                <h3>Step 1: Open Menu</h3>
+                <p>In your browser click menu</p>
+                <div class="install-step-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
+                <button class="install-next-btn" onclick="nextStep(1)">Next →</button>
             </div>
 
             <!-- Step 2 -->
-            <div class="tutorial-step" data-step="2">
-                <div class="tutorial-title">Step 2: Add to Home Screen</div>
-                <div class="tutorial-description">Click on "Add to Home Screen" option</div>
-                <img src="https://i.postimg.cc/brMh4wTY/2026-4-17-10h10m27s.jpg" alt="Step 2" class="tutorial-image">
+            <div class="install-step" data-step="2">
+                <div class="install-step-image">
+                    <img src="https://i.postimg.cc/brMh4wTY/2026-4-17-10h10m27s.jpg" alt="Step 2">
+                </div>
+                <h3>Step 2: Add to Home Screen</h3>
+                <p>Click add to home screen</p>
+                <div class="install-step-indicators">
+                    <span class="indicator"></span>
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
+                <div class="install-buttons">
+                    <button class="install-prev-btn" onclick="prevStep(2)">← Previous</button>
+                    <button class="install-next-btn" onclick="nextStep(2)">Next →</button>
+                </div>
             </div>
 
             <!-- Step 3 -->
-            <div class="tutorial-step" data-step="3">
-                <div class="tutorial-title">Step 3: Click Install</div>
-                <div class="tutorial-description">Click the install button to continue</div>
-                <img src="https://i.postimg.cc/nVGPXrft/2026-4-17-10h11m38s.jpg" alt="Step 3" class="tutorial-image">
+            <div class="install-step" data-step="3">
+                <div class="install-step-image">
+                    <img src="https://i.postimg.cc/nVGPXrft/2026-4-17-10h11m38s.jpg" alt="Step 3">
+                </div>
+                <h3>Step 3: Install</h3>
+                <p>Click install button</p>
+                <div class="install-step-indicators">
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                </div>
+                <div class="install-buttons">
+                    <button class="install-prev-btn" onclick="prevStep(3)">← Previous</button>
+                    <button class="install-next-btn" onclick="nextStep(3)">Next →</button>
+                </div>
             </div>
 
             <!-- Step 4 -->
-            <div class="tutorial-step" data-step="4">
-                <div class="tutorial-title">Step 4: Installation Complete</div>
-                <div class="tutorial-description">Learny is now installed! Start learning today.</div>
-                <img src="https://i.postimg.cc/sXRTXdnv/2026-4-17-10h13m22s.jpg" alt="Step 4" class="tutorial-image">
-            </div>
-
-            <!-- Navigation Dots -->
-            <div class="tutorial-dots">
-                <div class="dot active" data-dot="1"></div>
-                <div class="dot" data-dot="2"></div>
-                <div class="dot" data-dot="3"></div>
-                <div class="dot" data-dot="4"></div>
-            </div>
-
-            <!-- Buttons -->
-            <div class="tutorial-buttons">
-                <button class="btn-next" id="nextBtn">Next</button>
-                <button class="btn-got-it" id="gotItBtn" style="display: none;">Got it!</button>
+            <div class="install-step" data-step="4">
+                <div class="install-step-image">
+                    <img src="https://i.postimg.cc/sXRTXdnv/2026-4-17-10h13m22s.jpg" alt="Step 4">
+                </div>
+                <h3>Step 4: Complete</h3>
+                <p>Then install</p>
+                <div class="install-step-indicators">
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator active"></span>
+                </div>
+                <div class="install-buttons">
+                    <button class="install-prev-btn" onclick="prevStep(4)">← Previous</button>
+                    <button class="install-gotit-btn" onclick="closePopup()">Got it!</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
-    
-    <!-- Tutorial Popup Script -->
+    <!-- Popup Styles (Inline - doesn't affect your style.css) -->
+    <style>
+        .install-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .install-popup-container {
+            background: white;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .install-step {
+            display: none;
+        }
+
+        .install-step.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .install-step-image {
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .install-step-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .install-step h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .install-step p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .install-step-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .install-step-indicators .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .install-step-indicators .indicator.active {
+            background: #4CAF50;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .install-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .install-next-btn,
+        .install-prev-btn,
+        .install-gotit-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .install-next-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .install-next-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .install-prev-btn {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .install-prev-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .install-gotit-btn {
+            background: #2196F3;
+            color: white;
+        }
+
+        .install-gotit-btn:hover {
+            background: #1976D2;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .install-popup-container {
+                padding: 20px;
+            }
+
+            .install-step h3 {
+                font-size: 20px;
+            }
+
+            .install-step p {
+                font-size: 14px;
+            }
+
+            .install-next-btn,
+            .install-prev-btn,
+            .install-gotit-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <!-- Popup Script (Inline - doesn't affect your script.js) -->
     <script>
-        // Tutorial functionality
-        (function() {
-            const overlay = document.getElementById('tutorialOverlay');
-            const nextBtn = document.getElementById('nextBtn');
-            const gotItBtn = document.getElementById('gotItBtn');
-            const steps = document.querySelectorAll('.tutorial-step');
-            const dots = document.querySelectorAll('.dot');
-            let currentStep = 1;
-            const totalSteps = 4;
-
-            // Check if first visit
-            function checkFirstVisit() {
-                const hasSeenTutorial = localStorage.getItem('learnyTutorialSeen');
-                if (!hasSeenTutorial) {
-                    setTimeout(() => {
-                        overlay.style.display = 'flex';
-                    }, 500);
-                }
+        // Check if popup has been shown before
+        window.addEventListener('load', function() {
+            const hasSeenPopup = localStorage.getItem('hasSeenInstallPopup');
+            
+            if (!hasSeenPopup) {
+                setTimeout(function() {
+                    document.getElementById('installPopup').style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }, 500);
             }
+        });
 
-            // Update step display
-            function updateStep(step) {
-                steps.forEach(s => s.classList.remove('active'));
-                dots.forEach(d => d.classList.remove('active'));
-                
-                document.querySelector(`.tutorial-step[data-step="${step}"]`).classList.add('active');
-                document.querySelector(`.dot[data-dot="${step}"]`).classList.add('active');
+        function nextStep(currentStep) {
+            // Hide current step
+            document.querySelector(`.install-step[data-step="${currentStep}"]`).classList.remove('active');
+            
+            // Show next step
+            const nextStepNum = currentStep + 1;
+            document.querySelector(`.install-step[data-step="${nextStepNum}"]`).classList.add('active');
+            
+            // Update indicators
+            updateIndicators(nextStepNum);
+        }
 
-                // Show/hide buttons
-                if (step === totalSteps) {
-                    nextBtn.style.display = 'none';
-                    gotItBtn.style.display = 'block';
+        function prevStep(currentStep) {
+            // Hide current step
+            document.querySelector(`.install-step[data-step="${currentStep}"]`).classList.remove('active');
+            
+            // Show previous step
+            const prevStepNum = currentStep - 1;
+            document.querySelector(`.install-step[data-step="${prevStepNum}"]`).classList.add('active');
+            
+            // Update indicators
+            updateIndicators(prevStepNum);
+        }
+
+        function updateIndicators(stepNum) {
+            const indicators = document.querySelectorAll('.install-step-indicators .indicator');
+            indicators.forEach((indicator, index) => {
+                if (index + 1 === stepNum) {
+                    indicator.classList.add('active');
                 } else {
-                    nextBtn.style.display = 'block';
-                    gotItBtn.style.display = 'none';
+                    indicator.classList.remove('active');
                 }
+            });
+        }
+
+        function closePopup() {
+            document.getElementById('installPopup').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            localStorage.setItem('hasSeenInstallPopup', 'true');
+        }
+
+        // Prevent closing by clicking outside
+        document.getElementById('installPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                e.stopPropagation();
             }
+        });
 
-            // Next button click
-            nextBtn.addEventListener('click', () => {
-                if (currentStep < totalSteps) {
-                    currentStep++;
-                    updateStep(currentStep);
-                }
-            });
-
-            // Got it button click
-            gotItBtn.addEventListener('click', () => {
-                localStorage.setItem('learnyTutorialSeen', 'true');
-                overlay.style.display = 'none';
-            });
-
-            // Initialize
-            checkFirstVisit();
-        })();
+        // Prevent escape key from closing
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('installPopup').style.display === 'flex') {
+                e.preventDefault();
+            }
+        });
     </script>
+
+    <!-- Your existing scripts -->
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
