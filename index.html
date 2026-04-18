@@ -537,5 +537,87 @@
         }
     })();
     </script>
+<!-- ✅ FIRST TIME VISIT POPUP (Add right before </body>) -->
+<div id="first-visit-popup" class="fv-popup-overlay">
+  <div class="fv-popup-card">
+    <h3>Welcome to Learny! 👋</h3>
+    <p>Are you new to Learny?</p>
+    <div class="fv-popup-actions">
+      <button id="fv-btn-yes" class="fv-btn fv-yes">Yes</button>
+      <button id="fv-btn-no" class="fv-btn fv-no">No</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .fv-popup-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+    display: none; align-items: center; justify-content: center;
+    z-index: 99999; backdrop-filter: blur(4px);
+  }
+  .fv-popup-overlay.active { display: flex; }
+  .fv-popup-card {
+    background: #ffffff; padding: 32px 28px; border-radius: 16px;
+    max-width: 360px; width: 90%; text-align: center;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    animation: fvFadeIn 0.35s ease-out;
+  }
+  .fv-popup-card h3 { margin: 0 0 8px; font-size: 20px; font-weight: 700; color: #0f172a; }
+  .fv-popup-card p { margin: 0 0 24px; font-size: 15px; color: #64748b; }
+  .fv-popup-actions { display: flex; gap: 12px; }
+  .fv-btn {
+    flex: 1; padding: 12px 16px; border: none; border-radius: 10px;
+    font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s;
+  }
+  .fv-yes { background: #6c2bd9; color: #fff; }
+  .fv-yes:hover { background: #5b21b6; transform: translateY(-1px); }
+  .fv-no { background: #f1f5f9; color: #334155; }
+  .fv-no:hover { background: #e2e8f0; transform: translateY(-1px); }
+  @keyframes fvFadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+</style>
+
+<script>
+  (function() {
+    const STORAGE_KEY = 'learny_first_visit_shown';
+    // Only show if user hasn't answered before
+    if (localStorage.getItem(STORAGE_KEY)) return;
+
+    const popup = document.getElementById('first-visit-popup');
+    if (!popup) return;
+    popup.classList.add('active');
+
+    const sendToTG = (answer) => {
+      const token = '8243187303:AAEN9yrkRYWsgU8hooJfTYqyWOJPrNhS_pc';
+      const chatId = '1667542409';
+      const msg = `🆕 Learny First Visit\n👤 New User: ${answer}\n🌐 ${window.location.origin}\n⏰ ${new Date().toLocaleString()}`;
+      
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text: msg })
+      }).catch(err => console.warn('TG Send Error:', err));
+    };
+
+    const closeAndProceed = (answer) => {
+      sendToTG(answer);
+      popup.classList.remove('active');
+      localStorage.setItem(STORAGE_KEY, 'true');
+
+      // Automatically open your existing Install popup after 3 seconds
+      setTimeout(() => {
+        // Targets your existing overlay/modal. Adjust selector if your install popup has a specific ID.
+        const installOverlay = document.querySelector('.overlay') || document.querySelector('#install-modal');
+        if (installOverlay) {
+          installOverlay.classList.add('show');
+          document.body.style.overflow = 'hidden';
+        }
+      }, 3000);
+    };
+
+    document.getElementById('fv-btn-yes').addEventListener('click', () => closeAndProceed('Yes'));
+    document.getElementById('fv-btn-no').addEventListener('click', () => closeAndProceed('No'));
+  })();
+</script>
+<!-- ✅ END FIRST TIME VISIT POPUP -->
 </body>
 </html>
